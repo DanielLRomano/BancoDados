@@ -8,7 +8,7 @@
 
         // Preparar a consulta SQL para buscar as pizzas com o sabor selecionado
         $search = '%' . $_GET['search'] . '%';
-        $stmt = $pdo->prepare('SELECT * FROM entregas WHERE pizza LIKE :search');
+        $stmt = $pdo->prepare('SELECT * FROM funcionarios WHERE nome LIKE :search');
         $stmt->bindValue(':search', $search, PDO::PARAM_STR);
         $stmt->execute();
 
@@ -17,7 +17,7 @@
 
         // Verificar se foram encontrados resultados
         if(empty($contacts)) {
-            $error = 'Nenhuma entrega encontrada para o sabor de pizza especificado.';
+            $error = 'Nenhum funcionario encontrado.';
         }
     }
 ?>
@@ -76,21 +76,21 @@
 </head>
 
 <body>
-    <?=template_header('Pizzaria Dom Bruno')?><br><br>
+    <?=template_header('Pizzaria Matheus')?><br><br>
     <div class="content read">
         <form class="" id="searchForm" action="" method="get">
-            <label for="search">Pesquisar por sabor de pizza:</label>
+            <label for="search">Pesquisar por funcionario:</label>
             <select id="search" name="search">
-                <option value="">Selecione o sabor da pizza...</option>
+                <option value="">Selecione o funcionario...</option>
                 <?php
                     // Conectar ao banco de dados PostgreSQL
                     $pdo = pdo_connect_pgsql();
 
                     // Preparar a consulta SQL para obter os sabores de pizza
-                    $stmt = $pdo->query('SELECT DISTINCT pizza FROM entregas');
+                    $stmt = $pdo->query('SELECT DISTINCT nome FROM funcionarios');
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $selected = ($_GET['search'] ?? '') === $row['pizza'] ? 'selected' : '';
-                        echo '<option value="' . htmlspecialchars($row['pizza'], ENT_QUOTES) . '" ' . $selected . '>' . htmlspecialchars($row['pizza'], ENT_QUOTES) . '</option>';
+                        $selected = ($_GET['search'] ?? '') === $row['nome'] ? 'selected' : '';
+                        echo '<option value="' . htmlspecialchars($row['nome'], ENT_QUOTES) . '" ' . $selected . '>' . htmlspecialchars($row['nome'], ENT_QUOTES) . '</option>';
                     }
                 ?>
             </select>
@@ -107,27 +107,25 @@
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th># Funcionario</th>
                         <th>Nome</th>
-                        <th>Email</th>
-                        <th>Celular</th>
-                        <th>Pizza</th>
-                        <th>Situação</th>
+                        <th># Supervisor</th>
+                        <th>Atribuição</th>
+                        <th>Área de Trabalho</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($contacts as $contact): ?>
                         <tr>
-                            <td><?=$contact['id_entregas']?></td>
+                            <td><?=$contact['id_funcionario']?></td>
                             <td><?=$contact['nome']?></td>
-                            <td><?=$contact['email']?></td>
-                            <td><?=$contact['cel']?></td>
-                            <td><?=$contact['pizza']?></td>
-                            <td><?=$contact['situacao']?></td>
+                            <td><?=$contact['id_supervisor']?></td>
+                            <td><?=$contact['atribuicoes']?></td>
+                            <td><?=$contact['areas_trabalho']?></td>
                             <td class="actions">
-                    <a href="alterar_entrega.php?id=<?=$contact['id_entregas']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                    <a href="apagar_entrega.php?id=<?=$contact['id_entregas']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                    <a href="alterar_funcionario.php?id=<?=$contact['id_funcionario']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                    <a href="apagar_funcionario.php?id=<?=$contact['id_funcionario']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                 </td>
             </tr>
             <?php endforeach; ?>

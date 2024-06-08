@@ -31,10 +31,10 @@ echo <<<EOT
 	<body>
     <nav class="navtop">
     	<div>
-    		<h1> Romanos Pizzaria </h1>
+    		<h1> Pizzaria do Mestre </h1>
             <a href="index.php"><i class="fas fa-home"></i>Inicio</a>
     		<a href="read.php"><i class="fas fa-shopping-basket"></i>Pedidos</a>
-            <a href="entrega.php"><i class="fas fa-shopping-basket"></i>Entregas</a>
+            <a href="status.php"><i class="fas fa-list"></i> Status dos pedidos</a>
     	</div>
     </nav>
 EOT;

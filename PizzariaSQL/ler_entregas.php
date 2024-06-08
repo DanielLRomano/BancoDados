@@ -45,7 +45,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM entregas')->fetchColumn();
                 <td><?=$contact['email']?></td>
                 <td><?=$contact['cel']?></td>
                 <td><?=$contact['pizza']?></td>
-                <td><?=$contact['entrega']?></td>
+                <td><?=$contact['situacao']?></td>
                 <td class="actions">
                     <a href="alterar_entrega.php?id=<?=$contact['id_entregas']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
                     <a href="apagar_entrega.php?id=<?=$contact['id_entregas']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>

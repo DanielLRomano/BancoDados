@@ -76,7 +76,7 @@
 </head>
 
 <body>
-    <?=template_header('Pizzaria Dom Bruno')?><br><br>
+    <?=template_header('Pizzaria Matheus')?><br><br>
     <div class="content read">
         <form class="" id="searchForm" action="" method="get">
             <label for="search">Pesquisar por sabor de pizza:</label>

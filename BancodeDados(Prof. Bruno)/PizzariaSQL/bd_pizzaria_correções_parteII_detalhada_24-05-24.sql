@@ -1,7 +1,7 @@
 --1. **Listar todos os clientes cadastrados:**
 SELECT DISTINCT contatos.*
 FROM contatos
-INNER JOIN pedido ON contatos.id_contato = pedidos.id_contato;
+INNER JOIN pedidos ON contatos.id_contato = pedidos.id_contato;
 
 --2. **Listar todos os pedidos realizados em um determinado período:**
 SELECT *

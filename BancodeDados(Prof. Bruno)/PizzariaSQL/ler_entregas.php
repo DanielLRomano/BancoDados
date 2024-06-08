@@ -24,7 +24,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM entregas')->fetchColumn();
 
 <div class="content read">
 	<h2>Visualizar Entregas</h2>
-	<a href="createEntrega.php" class="create-contact">Realizar Entregas</a>
+	<a href="criar_entregas.php" class="create-contact">Registrar Entrega</a>
 	<table>
         <thead>
             <tr>
@@ -33,8 +33,8 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM entregas')->fetchColumn();
                 <td>Email</td>
                 <td>Celular</td>
                 <td>Pizza</td>
-                <td>Data do Pedido</td>
-                <td>Status da Entrega</td>
+                <td>Situação</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -45,11 +45,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM entregas')->fetchColumn();
                 <td><?=$contact['email']?></td>
                 <td><?=$contact['cel']?></td>
                 <td><?=$contact['pizza']?></td>
-                <td><?=$contact['cadastro']?></td>
-                <td><?=$contact['entrega']?></td>
+                <td><?=$contact['situacao']?></td>
                 <td class="actions">
-                    <a href="updateEntrega.php?id=<?=$contact['id_entregas']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
-                    <a href="deleteEntrega.php?id=<?=$contact['id_entregas']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
+                    <a href="alterar_entrega.php?id=<?=$contact['id_entregas']?>" class="edit"><i class="fas fa-pen fa-xs"></i></a>
+                    <a href="apagar_entrega.php?id=<?=$contact['id_entregas']?>" class="trash"><i class="fas fa-trash fa-xs"></i></a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -57,10 +56,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM entregas')->fetchColumn();
     </table>
 	<div class="pagination">
 		<?php if ($page > 1): ?>
-		<a href="entrega.php?page=<?=$page-1?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
+		<a href="ler_entregas.php?page=<?=$page-1?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
 		<?php endif; ?>
 		<?php if ($page*$records_per_page < $num_contacts): ?>
-		<a href="entrega.php?page=<?=$page+1?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
+		<a href="ler_entregas.php?page=<?=$page+1?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
 		<?php endif; ?>
 	</div>
 </div>
