@@ -1,4 +1,4 @@
-CREATE DATABASE pizzaria_matheus;
+CREATE DATABASE pizzaria_daniel;
 
 CREATE TABLE IF NOT EXISTS contatos (
     id_contato SERIAL PRIMARY KEY,
